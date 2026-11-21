@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Draft |
-| Version | 2 |
+| Version | 3 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When purpose, setup, support, or key documentation locations change |
 | Related work | [Document register](docs/README.md), [developer guide](docs/engineering/developer-guide.md), [decision log](docs/product/decisions.md) |
@@ -53,6 +53,8 @@ See the [decision log](docs/product/decisions.md).
 | `firebase.json`, `.firebaserc` | Firebase CLI configuration. The `dev` alias, also the default, is `tempercraft-dev`; the `prod` alias is `tempercraft` |
 | `docs/` | Product decisions, user journeys, architecture, engineering guides and ADRs, indexed by [docs/README.md](docs/README.md) |
 | `.mcp.json` | MCP servers for Claude Code: Linear, Sentry, Resend and Cloudflare. They sign in with OAuth, so the file holds no keys |
+| `LICENSE`, `NOTICE` | The Apache License 2.0, and the copyright notice |
+| `SECURITY.md` | How to report security problems privately |
 
 ## Documentation
 
@@ -66,16 +68,18 @@ See the [decision log](docs/product/decisions.md).
 | Customer or API documentation | N/A: not written yet |
 | Work items | Linear ([DEC-012](docs/product/decisions.md#decisions)) |
 | Open questions and gaps | The [register's gaps](docs/README.md#gaps-and-actions) |
+| Privacy | The [privacy policy](docs/policies/privacy-policy.md), a draft that isn't published yet |
+| Security | [SECURITY.md](SECURITY.md), and its working record, the [vulnerability disclosure policy](docs/policies/vulnerability-disclosure-policy.md) |
 
 ## Support and contribution
 
 - **Maintainer:** the project owner.
-- **Contributions:** there's no contribution guide or review policy yet. Work is tracked in Linear.
-- **Security reports:** there's no private channel for reporting security issues yet. Set one up before the repository is made public ([register gaps](docs/README.md#gaps-and-actions)).
+- **Contributions:** there's no contribution guide or review policy yet. Work is tracked in Linear. Contributions are accepted under the Apache License 2.0.
+- **Security reports:** report security problems privately, as described in [SECURITY.md](SECURITY.md), through GitHub's private vulnerability reporting. That reporting only works once the repository is public.
 
 ## License and use
 
-Not chosen yet. Until a license is added, nobody else can legally reuse the code ([ADR-003](docs/adr/ADR-003-free-and-open-source.md)).
+The [Apache License 2.0](LICENSE). See [NOTICE](NOTICE) for the copyright notice. The license doesn't grant permission to use the Tempercraft name or logo ([DEC-018](docs/product/decisions.md#decisions)).
 
 ## Completion check
 

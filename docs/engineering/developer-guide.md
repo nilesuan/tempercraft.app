@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Draft |
-| Version | 7 |
+| Version | 8 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When setup, tools, architecture, commands, or troubleshooting steps change |
 | Related work | [Architecture overview](../architecture/overview.md), [Solid 2.0 standards](solid-2-standards.md), [ADR-011](../adr/ADR-011-monorepo-npm-workspaces.md), [document register](../README.md) |
@@ -140,7 +140,7 @@ N/A for now. There's one maintainer, no branching or review policy, and no CI. A
 - **Signing and notarization:** macOS warns about, or blocks, downloaded apps that aren't signed with a Developer ID and notarized. Both need an Apple Developer Program membership, which costs US$99 a year. Once the certificate and credentials are set up, Tauri's build can sign and notarize.
 - **Updates:** add Tauri's updater plugin.
 - **CSP:** replace the template's `"csp": null` (see the [security rules](../architecture/overview.md#security-rules)).
-- **License:** pick one and add a `LICENSE` file (see the [register gaps](../README.md#gaps-and-actions)).
+- **License:** the Apache License 2.0 is in place ([DEC-018](../product/decisions.md#decisions)). Before making the repository public, turn on GitHub's private vulnerability reporting ([VDP-001](../policies/vulnerability-disclosure-policy.md)).
 
 ## Completion check
 

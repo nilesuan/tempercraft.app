@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Draft |
-| Version | 20 |
+| Version | 21 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When a document, owner, scope, or authoritative location changes |
 | Related work | [Decision log](product/decisions.md), [user journeys](user-journeys/JOURNEY-001-invite-to-dashboard.md), [architecture overview](architecture/overview.md), [developer guide](engineering/developer-guide.md) |
@@ -32,6 +32,7 @@
     | `user-journeys/` | User journeys, one file each, named `JOURNEY-NNN-short-name.md` |
     | `architecture/` | The architecture overview, the authentication design and the agent design |
     | `engineering/` | The developer guide and engineering standards |
+    | `policies/` | Public policies: the privacy policy and the vulnerability disclosure policy. Their public text goes in `SECURITY.md` and on the website's `/privacy` page |
     | `adr/` | Architecture decision records, one file each, named `ADR-NNN-short-name.md` |
   - Document IDs:
 
@@ -46,6 +47,8 @@
     | DESIGN | Detailed technical design |
     | DEV | Developer guide |
     | STD | Engineering standards |
+    | PRIV | Privacy policy and collection notices |
+    | VDP | Vulnerability disclosure policy |
     | ADR | Architecture decisions |
   - Statuses: Draft for living documents; Proposed, Accepted, Rejected or Superseded for ADRs. NOT RUN marks a check with no evidence yet.
 - **Access policy for sensitive documents:** the repository is meant to be public, because the app is open source. Keep secrets, tokens, personal data and billing identifiers out of `docs/`. Secrets live in Secret Manager or the macOS Keychain.
@@ -72,6 +75,8 @@
 | DESIGN-AGENT-001 | Detailed technical design: the design agent | [architecture/agent.md](architecture/agent.md) | Project owner | Draft | Contributors | 2026-11-21 | When the agent's contract, tools or evals change |
 | DEV-001 | Developer guide | [engineering/developer-guide.md](engineering/developer-guide.md) | Project owner | Draft | Contributors | 2026-11-21 | When setup or commands change |
 | STD-SOLID-001 | Engineering standards: Solid 2.0 UI code | [engineering/solid-2-standards.md](engineering/solid-2-standards.md) | Project owner | Draft | Contributors and AI coding tools | 2026-11-21 | On every Solid update |
+| PRIV-001 | Privacy policy and collection notices | [policies/privacy-policy.md](policies/privacy-policy.md) | Project owner | Draft | Contributors; the public extract is for users | 2026-11-21 | Before publication, and when processing changes |
+| VDP-001 | Vulnerability disclosure policy; its public text is [SECURITY.md](../SECURITY.md) | [policies/vulnerability-disclosure-policy.md](policies/vulnerability-disclosure-policy.md) | Project owner | Draft | Contributors and security researchers | 2026-11-21 | When the repository is made public |
 | ADR-001 | ADR: Desktop shell is Tauri 2 | [adr/ADR-001-desktop-shell-tauri-2.md](adr/ADR-001-desktop-shell-tauri-2.md) | Project owner | Accepted | Contributors | 2026-11-21 | Its revisit conditions |
 | ADR-002 | ADR: UI framework is Solid 2.0 | [adr/ADR-002-ui-framework-solid-2.md](adr/ADR-002-ui-framework-solid-2.md) | Project owner | Accepted | Contributors | 2026-11-21 | Its revisit conditions |
 | ADR-003 | ADR: Tempercraft is free and open source | [adr/ADR-003-free-and-open-source.md](adr/ADR-003-free-and-open-source.md) | Project owner | Accepted | Contributors | 2026-11-21 | Its revisit conditions |
@@ -106,7 +111,8 @@
 | Owner's working notes (`docs/SCRATCH.md`) | N/A: informal notes, not a controlled document. Kept out of git with `.gitignore` while the owner edits them | Their stack, roles and journeys moved into the [decision log](product/decisions.md), the ADRs and [user-journeys/](user-journeys/JOURNEY-001-invite-to-dashboard.md), and the file was cleared on 2026-11-21 | Project owner | When the notes change |
 | Work items: stories, tasks and bugs | In Linear, not in this repo | Linear is the authoritative location ([DEC-012](product/decisions.md#decisions)). These docs link to Linear issues rather than copying them | Project owner | If the team moves off Linear |
 | Analytics tracking plan | Not written yet | Google Analytics is chosen ([ADR-017](adr/ADR-017-google-analytics.md)). The plan lists the events, their parameters and the consent rules | Project owner | Before any analytics ships |
-| Privacy policy | Not written yet | It must name Sentry and Google Analytics ([ADR-016](adr/ADR-016-sentry-error-tracking.md), [ADR-017](adr/ADR-017-google-analytics.md)), and the website will publish it at `/privacy` ([ADR-015](adr/ADR-015-website-hosting-and-urls.md)) | Project owner | Before the first invite |
+| Privacy policy | Written as a draft: [PRIV-001](policies/privacy-policy.md) | It names Sentry and Google Analytics, and its public text will be published at `/privacy` on the website ([ADR-015](adr/ADR-015-website-hosting-and-urls.md)) | Project owner | Before the first invite |
+| Consent and preferences specification | Not written yet | Needed for the analytics consent prompt in the app and the banner on the website ([ADR-017](adr/ADR-017-google-analytics.md)) | Project owner | Before any analytics ships |
 
 ## Gaps and actions
 
@@ -115,7 +121,7 @@ Ordered by when each item is due.
 | Missing or outdated information | Impact | Required evidence | Owner | Due |
 |---|---|---|---|---|
 | **Blaze budget alert:** not confirmed | Pay-as-you-go spending has no alert. `tempercraft` and `tempercraft-dev` share one billing account | A budget alert in Cloud Billing on that account ([ADR-012](adr/ADR-012-firebase-blaze-plan.md)) | Project owner | Now |
-| **Privacy policy and consent:** no privacy policy exists, and the website's consent banner and the app's consent prompt aren't designed | Sentry and Google Analytics can't ship lawfully without them | A published privacy policy, plus consent on the site and in the app ([ADR-017](adr/ADR-017-google-analytics.md)) | Project owner | Before the first invite |
+| **Privacy policy and consent:** [PRIV-001](policies/privacy-policy.md) is drafted but can't be published yet. Five things are missing: the responsible entity, a `privacy@tempercraft.app` mailbox, an assessment of which laws apply, the retention periods, and the consent prompt and banner | Sentry and Google Analytics can't ship lawfully without them | The steps in [PRIV-001's review and publication section](policies/privacy-policy.md#review-and-publication) | Project owner | Before the first invite |
 | **Sentry and Google Analytics setup:** no Sentry projects, GA4 properties or tracking plan exist | No error or usage data | The steps in [ADR-016](adr/ADR-016-sentry-error-tracking.md#implementation-and-evidence) and [ADR-017](adr/ADR-017-google-analytics.md#implementation-and-evidence) | Project owner | Before the first invite |
 | **Is Google sign-in needed?** Sign in with ChatGPT already returns a verified identity, and every user has to connect ChatGPT. The invite-only teams in the [user journeys](user-journeys/JOURNEY-001-invite-to-dashboard.md) need a Tempercraft account and Firestore, which favours keeping Firebase Auth | Closes the open point in [ADR-008](adr/ADR-008-google-sign-in-firebase-system-browser.md) and sets the scope of [AUTH-001](architecture/authentication.md) | The owner's decision, recorded in ADR-008 | Project owner | Before building sign-in |
 | **Google sign-in in `tempercraft-dev`:** the Google provider isn't turned on, there's no Desktop OAuth client yet, and Auth isn't upgraded to Identity Platform | Nobody can sign in against dev, and sign-ups can't be limited to invites | All three set up in the console ([ADR-014](adr/ADR-014-dev-and-prod-firebase-projects.md#implementation-and-evidence), [ADR-019](adr/ADR-019-block-sign-up-without-invite.md), [AUTH-001](architecture/authentication.md#google-sign-in-through-firebase-auth)) | Project owner | Before building sign-in |
@@ -126,8 +132,7 @@ Ordered by when each item is due.
 | **Resend API keys:** the sending domain `mail.tempercraft.app` is verified in Resend (2026-11-21), but there's no sending-only API key in Secret Manager yet | Invites can't be sent | A `RESEND_API_KEY` secret in each project, with a separate key for each ([ADR-013](adr/ADR-013-transactional-email-resend.md#implementation-and-evidence), [ADR-014](adr/ADR-014-dev-and-prod-firebase-projects.md)) | Project owner | Before building invites |
 | **Firestore and Storage:** nothing uses them yet, and both rules files deny everything. Orgs, invites and projects need Firestore, partitioned by org ([DEC-006](product/decisions.md#decisions)). Storage is available on Blaze, but is needed only for file storage | Data model and rules | A data model design | Project owner | Before building teams |
 | **Website domains:** `tempercraft.app`, `www` and `dev` aren't connected to Hosting | No website at those addresses | [ADR-015](adr/ADR-015-website-hosting-and-urls.md#implementation-and-evidence) steps 1 to 3 | Project owner | Before the first invite |
-| **License:** none chosen yet. MIT and Apache-2.0 are the usual picks | Until a license is added, nobody else can legally reuse the code | A `LICENSE` file and an update to [ADR-003](adr/ADR-003-free-and-open-source.md) | Project owner | Before the repository is made public |
-| **Security contact:** there's no private channel for reporting security issues | Researchers would have to report vulnerabilities in public | A security contact, published in the repository README, for example a `SECURITY.md` | Project owner | Before the repository is made public |
+| **Security reporting goes live with the repository:** GitHub's private vulnerability reporting only works on public repositories. A `security@tempercraft.app` backup alias is proposed | Until then, nobody outside the project can report privately | Turn it on and check it when the repository is made public ([VDP-001](policies/vulnerability-disclosure-policy.md)) | Project owner | When the repository is made public |
 | **API-key fallback:** should users without a ChatGPT plan be able to paste an OpenAI API key instead? | Scope of AUTH-001 and the agent | The owner's decision | Project owner | Before the first release |
 | **Default model:** the available models come from each account's `GET /v1/models` list, but no default is picked | Agent defaults | The owner's decision, informed by evals | Project owner | Before the first release |
 | **Prod setup:** `tempercraft` has no Firestore database, web app or Google sign-in yet | Release builds have no backend | Prod's half of [ADR-014](adr/ADR-014-dev-and-prod-firebase-projects.md#implementation-and-evidence) step 3 | Project owner | Before the first release |

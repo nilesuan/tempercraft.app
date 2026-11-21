@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Accepted |
-| Version | 1 |
+| Version | 2 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When its assumptions change or the decision is superseded |
 | Related work | [ADR-004](ADR-004-model-access-sign-in-with-chatgpt.md), [authentication design](../architecture/authentication.md), [register gaps](../README.md#gaps-and-actions) |
@@ -47,7 +47,7 @@ Tempercraft is free and open source. No license is chosen yet.
 
 ## Implementation and evidence
 
-- License: not chosen; the root `README.md` says so.
+- License: the Apache License 2.0, chosen on 2026-11-21 ([DEC-018](../product/decisions.md#decisions)). See `LICENSE` and `NOTICE` at the repo root.
 - Dependent decisions: [ADR-004](ADR-004-model-access-sign-in-with-chatgpt.md) relies on this one.
 
 ## Completion check
