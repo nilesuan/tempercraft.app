@@ -6,6 +6,8 @@ If you think you've found a security problem in Tempercraft, please tell us priv
 
 Report it through GitHub's private vulnerability reporting: open this repository's **Security** tab and choose **Report a vulnerability**. Only the maintainers can see your report.
 
+If you can't use GitHub, email security@tempercraft.app instead.
+
 Helpful details:
 - what's affected, such as the app version or the website page;
 - the steps to reproduce the problem;

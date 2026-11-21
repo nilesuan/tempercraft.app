@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Draft |
-| Version | 15 |
+| Version | 17 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When new decisions supersede or qualify earlier ones |
 | Related work | [Document register](../README.md), [architecture decision records](../README.md#register), [user journey](../user-journeys/JOURNEY-001-invite-to-dashboard.md) |
@@ -41,6 +41,7 @@
 | DEC-016 | 2026-11-21 | Which of the open proposals stand? | The 13 proposals listed on 2026-11-21 | Eleven confirmed, one changed and two left open; the list is under Consequences and actions. Changed: Sentry in the app uses the official SDKs first, with the community plugin as the fallback. Left open: whether the owner's first domain needs a DNS check, and whether to block sign-up with a blocking function | Project owner | The owner's answers on 2026-11-21 | — |
 | DEC-017 | 2026-11-21 | Does the owner's own domain need a DNS check, and is sign-up blocked without an invite? | The two points DEC-016 left open | The owner's own domain needs no DNS check, because a system admin invited the owner; only domains added later need it. Sign-up is blocked for anyone without an invite, by a blocking function that needs Firebase Authentication with Identity Platform ([ADR-019](../adr/ADR-019-block-sign-up-without-invite.md)). Rationale: the admin's invite vouches for the first domain, which keeps onboarding simple (recommended on 2026-11-21 and accepted) | Project owner | The owner's answers on 2026-11-21 | When sign-up opens to the public |
 | DEC-018 | 2026-11-21 | Which license? | MIT, Apache-2.0 and AGPL-3.0 | The Apache License 2.0, picked by Claude at the owner's request. Rationale: it's permissive, so anyone can use, change and contribute to the code, and it fits a free app that may add paid plans later (DEC-005). It includes an explicit patent grant, and it doesn't grant use of the Tempercraft name (section 6). It's compatible with the main dependencies: Tauri is MIT or Apache-2.0, and Solid and promptfoo are MIT | Project owner, who delegated the choice | The owner's request on 2026-11-21 | Before the repository is made public, if the owner prefers another license |
+| DEC-019 | 2026-11-21 | Who is responsible for privacy, which law applies, how long is data kept, and what security response times apply? | The open items in PRIV-001 and VDP-001 | The creator of Tempercraft is responsible, as an individual. The small business exemption in Australia's Privacy Act applies, and the privacy policy follows the Australian Privacy Principles voluntarily. Retention follows Claude's recommendation: invitations are deleted 30 days after they're accepted, cancelled or expire; email delivery records and error reports are kept for 30 days; analytics for 2 months; account, team and change records while the account and team exist. The minimum age is 16. The security response targets are accepted: acknowledgement within 7 days, an update every 30 days, and disclosure after 90 days | Project owner | The owner's answers on 2026-11-21 | When turnover passes A$3 million, the exemption changes, or people in the EU or UK are invited |
 
 ## Consequences and actions
 
@@ -115,6 +116,8 @@
   - `LICENSE` and `NOTICE` are at the repo root, and the package files declare `Apache-2.0`.
   - The copyright holder is written as "The Tempercraft Authors". The owner can change it to their own name or a company's.
   - Contributions are accepted under the same license (section 5), with no separate agreement.
+
+- **DEC-019 clears most of PRIV-001's open items.** What's left before publishing: the consent prompt, banner and specification; checking each claim against the built product; and Resend's and Sentry's processing locations. In VDP-001, the response targets are now commitments.
 
 ## Superseded decisions
 

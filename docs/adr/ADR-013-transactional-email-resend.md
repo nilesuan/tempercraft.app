@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Accepted |
-| Version | 5 |
+| Version | 6 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When its assumptions change or the decision is superseded |
 | Related work | [ADR-012](ADR-012-firebase-blaze-plan.md), [DEC-001](../product/decisions.md#decisions), [user journey](../user-journeys/JOURNEY-001-invite-to-dashboard.md), [register gaps](../README.md#gaps-and-actions) |
@@ -70,7 +70,7 @@ Accepted by the project owner on 2026-11-21:
   - Resend's free plan terms could change.
 - Mitigations and owners (project owner):
   - Server-side templates, role checks and per-sender limits.
-  - DMARC is in place with `p=none`. Add `rua` reports to a monitored mailbox, and tighten the policy once all mail from the domain passes.
+  - DMARC is in place with `p=none`, and aggregate reports go to `dmarc@tempercraft.app`. Tighten the policy once the reports show that all mail from the domain passes.
   - If Resend stops fitting, Mailgun's free plan has the same daily cap.
 - Revisit conditions: sending regularly passes 100 emails a day, Resend's pricing changes, or deliverability problems appear.
 
@@ -80,7 +80,7 @@ Accepted by the project owner on 2026-11-21:
 |---|---|
 | 1. Create a Resend account | Done by the project owner |
 | 2. Add the sending domain in Resend, and let Resend's Cloudflare auto-configure add the DNS records | Done. The owner added `mail.tempercraft.app`; Resend shows DKIM and SPF as Verified, with sending enabled. Checked with `dig` against 1.1.1.1: the DKIM TXT at `resend._domainkey.mail.tempercraft.app` matches Resend's key; `send.mail` resolves to `send.forge.rmta.net` (SPF `v=spf1 ip4:… ~all`, MX `feedback.forge.rmta.net`); `rsend.mail` resolves to `rsend-apne1.forge.rmta.net`. Workspace's MX, SPF and DKIM on the root are unchanged |
-| 3. Add a `_dmarc` TXT record at the root | Done: `v=DMARC1; p=none;`. It resolves from Cloudflare's nameserver, 1.1.1.1 and 8.8.8.8. `mail.tempercraft.app` has no record of its own, so the root policy covers it. There's no `rua` tag yet, so no aggregate reports |
+| 3. Add a `_dmarc` TXT record at the root | Done: `v=DMARC1; p=none; rua=mailto:dmarc@tempercraft.app;`. It resolves from Cloudflare's nameserver and 1.1.1.1 (checked 2026-11-21). `mail.tempercraft.app` has no record of its own, so the root policy covers it. Aggregate reports go to the `dmarc@tempercraft.app` alias, added on 2026-11-21 |
 | 4. Create a sending-only API key per environment, and store each with `firebase functions:secrets:set RESEND_API_KEY --project dev` (then `--project prod`) | NOT RUN |
 | 5. Write `sendInvite`, with tests for unauthorized callers, wrong roles and rate limits | NOT RUN. Waits on the invite-flow questions in the [user journey](../user-journeys/JOURNEY-001-invite-to-dashboard.md#validation-and-changes) |
 

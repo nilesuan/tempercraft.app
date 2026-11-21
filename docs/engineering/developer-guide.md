@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Draft |
-| Version | 8 |
+| Version | 10 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When setup, tools, architecture, commands, or troubleshooting steps change |
 | Related work | [Architecture overview](../architecture/overview.md), [Solid 2.0 standards](solid-2-standards.md), [ADR-011](../adr/ADR-011-monorepo-npm-workspaces.md), [document register](../README.md) |
@@ -62,6 +62,10 @@ No credentials are needed for these steps. The Firebase web config isn't a secre
 - **UI code:** follow the [Solid 2.0 standards](solid-2-standards.md).
 - **Rust crates** go in `apps/desktop/src-tauri/Cargo.toml`.
 - **Updates:** `package-lock.json` and `Cargo.lock` pin exact versions. Update Solid on purpose, because it's shipping patches every few days right now.
+- **Repository security on GitHub** (turned on 2026-11-21):
+  - Secret scanning with push protection is on, so GitHub blocks a push that contains a recognised secret.
+  - Dependabot alerts and security updates are on, so Dependabot opens pull requests for vulnerable dependencies.
+  - Dependabot version updates aren't set up. They'd need a `.github/dependabot.yml`, and Solid is updated on purpose.
 - **Firebase:**
   - `firebase.json` and `.firebaserc` stay at the root, and the rules and indexes live in `firebase/`. The CLI finds `firebase.json` from any subfolder.
   - There are two projects, both on Blaze ([ADR-014](../adr/ADR-014-dev-and-prod-firebase-projects.md)): `tempercraft-dev` (alias `dev`, also the default) and `tempercraft` (alias `prod`). `firebase deploy` goes to dev; deploy to prod with `--project prod`. `firebase use` shows the active project.
@@ -140,7 +144,7 @@ N/A for now. There's one maintainer, no branching or review policy, and no CI. A
 - **Signing and notarization:** macOS warns about, or blocks, downloaded apps that aren't signed with a Developer ID and notarized. Both need an Apple Developer Program membership, which costs US$99 a year. Once the certificate and credentials are set up, Tauri's build can sign and notarize.
 - **Updates:** add Tauri's updater plugin.
 - **CSP:** replace the template's `"csp": null` (see the [security rules](../architecture/overview.md#security-rules)).
-- **License:** the Apache License 2.0 is in place ([DEC-018](../product/decisions.md#decisions)). Before making the repository public, turn on GitHub's private vulnerability reporting ([VDP-001](../policies/vulnerability-disclosure-policy.md)).
+- **License and security reporting:** the Apache License 2.0 is in place ([DEC-018](../product/decisions.md#decisions)), and GitHub's private vulnerability reporting is on ([VDP-001](../policies/vulnerability-disclosure-policy.md)).
 
 ## Completion check
 

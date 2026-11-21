@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Draft |
-| Version | 1 |
+| Version | 3 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When processing, responsible entities, recipients, user routes, or applicable requirements change |
 | Related work | [ADR-004](../adr/ADR-004-model-access-sign-in-with-chatgpt.md) (OpenAI); [ADR-013](../adr/ADR-013-transactional-email-resend.md) (email); [ADR-014](../adr/ADR-014-dev-and-prod-firebase-projects.md) (Firebase); [ADR-016](../adr/ADR-016-sentry-error-tracking.md) (Sentry); [ADR-017](../adr/ADR-017-google-analytics.md) (analytics); [ADR-019](../adr/ADR-019-block-sign-up-without-invite.md) (sign-up); [DEC-001 to DEC-017](../product/decisions.md#decisions); [authentication design](../architecture/authentication.md) |
@@ -17,13 +17,16 @@
 - **What this record prepares:** both a general privacy policy and short collection notices.
   - The policy will be published on the website at `/privacy` ([ADR-015](../adr/ADR-015-website-hosting-and-urls.md)), and linked from the app.
   - The notices appear in the app and on the website, at the moments listed in [collection notice at the interaction](#collection-notice-at-the-interaction).
-- **Responsible entity:** [Open: the owner as an individual, or a company].
+- **Responsible entity:** the creator of Tempercraft, as an individual based in Australia ([DEC-019](../product/decisions.md#decisions)).
 - **Audience:**
   - people invited to the invite-only first release ([DEC-001](../product/decisions.md#decisions)): team owners, managers and members;
   - visitors to the website;
   - people who receive invites.
 - **Regions:** not limited. The owner and the data are in Australia, but anyone can be invited.
-- **Which laws apply:** [Open: not assessed]. Candidates are Australia's Privacy Act 1988 and its Australian Privacy Principles (the small business exemption may apply), the GDPR and UK GDPR if people in the EU or UK are invited, and US state laws. The draft below is written to be compatible with them, but that isn't a legal assessment.
+- **Which laws apply:** this is the owner's assessment on 2026-11-21 ([DEC-019](../product/decisions.md#decisions)).
+  - Tempercraft is covered by the small business exemption in Australia's Privacy Act 1988: its annual turnover is under A$3 million, and it doesn't trade in personal information. So the Australian Privacy Principles don't legally apply, but this policy follows them anyway.
+  - Reassess if turnover passes A$3 million, or if the exemption changes; its removal has been proposed as part of the Privacy Act reforms.
+  - Reassess before inviting people in the EU or the UK, where the GDPR or UK GDPR may apply regardless.
 - **Sources of truth:** the decisions and designs linked in Related work. Almost nothing is built yet, so every claim below is NOT RUN until the claims table shows evidence.
 
 ## Public policy draft
@@ -32,9 +35,9 @@ The text below is the public extract. Before publishing, resolve every "[Open: �
 
 ### Who we are
 
-Tempercraft is a free, open-source macOS app for designing web pages with an AI agent, together with the website tempercraft.app. In this policy, "Tempercraft", "we" and "us" mean [Open: the responsible entity].
+Tempercraft is a free, open-source macOS app for designing web pages with an AI agent, together with the website tempercraft.app. In this policy, "Tempercraft", "we" and "us" mean the creator of Tempercraft, who runs it as an individual based in Australia.
 
-Questions or requests: privacy@tempercraft.app [Open: this mailbox doesn't exist yet].
+Questions or requests: privacy@tempercraft.app.
 
 ### What we collect
 
@@ -79,9 +82,11 @@ Some of these providers process information outside Australia, including in the 
 ### How long we keep it
 
 - **Account and team information:** while your account and team exist, until you ask us to delete it.
-- **Invitations and change records:** while your team exists, so its owners can see the history. [Open: whether invitations are deleted sooner after they expire or are cancelled.]
-- **Error reports:** deleted automatically after [Open: the Sentry retention period].
-- **Analytics:** Google Analytics keeps event data for [Open: the retention setting; proposed 2 months].
+- **Invitations:** deleted 30 days after they're accepted, cancelled or expire.
+- **Records of role and domain changes:** kept while your team exists, so its owners can see the history.
+- **Email delivery records:** kept by our email provider for 30 days.
+- **Error reports:** deleted automatically after 30 days.
+- **Analytics:** Google Analytics keeps event data for 2 months.
 
 ### Your choices and requests
 
@@ -92,11 +97,11 @@ Some of these providers process information outside Australia, including in the 
 
 ### Complaints
 
-Please contact us first at privacy@tempercraft.app. If you're not satisfied with our answer, you can complain to the Office of the Australian Information Commissioner (oaic.gov.au), or to the data protection authority where you live.
+Please contact us first at privacy@tempercraft.app, and we'll try to put it right. Tempercraft is a small business under Australia's Privacy Act, so the Office of the Australian Information Commissioner may not be able to handle a complaint about it. If you live outside Australia, you can also contact the data protection authority where you live.
 
 ### Children
 
-Tempercraft is a tool for work teams and isn't meant for anyone under 16. [Open: confirm the minimum age.]
+Tempercraft is a tool for work teams, and isn't meant for anyone under 16.
 
 ### Changes to this policy
 
@@ -128,19 +133,17 @@ Every notice links to the full policy and must work with screen readers. The app
 | Error reports are scrubbed of tokens, email addresses, paths, prompts and files | [ADR-016](../adr/ADR-016-sentry-error-tracking.md) | NOT RUN | Project owner | Sentry isn't set up |
 | Analytics is sent only after agreement, and contains no personal details | [ADR-017](../adr/ADR-017-google-analytics.md) | NOT RUN | Project owner | No consent prompt, banner or function yet |
 | No selling, no advertising, no model training | [ADR-017](../adr/ADR-017-google-analytics.md) | NOT RUN | Project owner | The GA property must have advertising features turned off |
-| Retention periods | — | — | Project owner | Not decided |
-| Requests go to privacy@tempercraft.app | — | NOT RUN | Project owner | The mailbox doesn't exist |
-| Who is responsible | — | — | Project owner | The entity isn't decided |
+| Retention: invitations 30 days after they close; email records and error reports 30 days; analytics 2 months | [DEC-019](../product/decisions.md#decisions) | NOT RUN | Project owner | No deletion job yet, and the GA retention setting isn't configured. The 30 days for error reports is Sentry's free-plan retention; paid plans keep 90 days |
+| Requests go to privacy@tempercraft.app | The Workspace alias, created on 2026-11-21 | The alias exists on the admin account; handling a request is NOT RUN | Project owner | None |
+| The creator of Tempercraft, as an individual, is responsible | [DEC-019](../product/decisions.md#decisions) | — | Project owner | None |
 
 ## Review and publication
 
 - **State on 2026-11-21:** Draft. Not reviewed, approved or published. Communication: NOT SENT.
 - **Before publishing:**
-  1. Decide the responsible entity, and create `privacy@tempercraft.app`.
-  2. Assess which laws apply, ideally with a privacy professional.
-  3. Decide the retention periods and the minimum age.
-  4. Build the consent prompt and banner, and write the consent and preferences specification.
-  5. Verify every row of the claims table against the built product.
+  1. Build the consent prompt and banner, and write the consent and preferences specification.
+  2. Confirm Resend's and Sentry's processing locations.
+  3. Verify every row of the claims table against the built product.
 - **Publication:** on the website at `/privacy`, with its effective date, and linked from the app's welcome screen and analytics prompt. Each published version is kept, with its dates.
 
 ## Completion check

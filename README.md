@@ -7,7 +7,7 @@
 | Owner | Project owner |
 | Reviewers | None assigned yet (single-maintainer project) |
 | Status | Draft |
-| Version | 3 |
+| Version | 4 |
 | Last reviewed | 2026-11-21 |
 | Review trigger | When purpose, setup, support, or key documentation locations change |
 | Related work | [Document register](docs/README.md), [developer guide](docs/engineering/developer-guide.md), [decision log](docs/product/decisions.md) |
@@ -75,7 +75,7 @@ See the [decision log](docs/product/decisions.md).
 
 - **Maintainer:** the project owner.
 - **Contributions:** there's no contribution guide or review policy yet. Work is tracked in Linear. Contributions are accepted under the Apache License 2.0.
-- **Security reports:** report security problems privately, as described in [SECURITY.md](SECURITY.md), through GitHub's private vulnerability reporting. That reporting only works once the repository is public.
+- **Security reports:** report security problems privately through GitHub's private vulnerability reporting: open the Security tab and choose Report a vulnerability. [SECURITY.md](SECURITY.md) has the details.
 
 ## License and use
 
