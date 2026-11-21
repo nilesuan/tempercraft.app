@@ -1,0 +1,16 @@
+{
+  "name": "@tempercraft/agent",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Tempercraft's design agent: instructions, tools and loop, with no Tauri, UI or Node dependencies",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3"
+  }
+}

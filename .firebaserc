@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "tempercraft-dev",
+    "dev": "tempercraft-dev",
+    "prod": "tempercraft"
+  }
+}

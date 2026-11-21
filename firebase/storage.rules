@@ -1,0 +1,11 @@
+rules_version = '2';
+
+// Locked down by default: client SDKs can't read or write any files until you
+// add rules for specific paths. The Admin SDK bypasses these rules.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
